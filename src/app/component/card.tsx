@@ -1,58 +1,75 @@
 "use client";
-import React, { useState, useEffect } from "react";
-import styles from "../style/card.module.css";
+import { useState, useEffect } from "react";
+import CardProps from "../interface";
+import Image from "next/image";
+export default function Card({
+  hospitalName,
+  hospitalPicUrl,
+  hospitalDescription,
+}: CardProps) {
+  // const originalText: String = hospitalName;
 
-const images = ["/vaccine1.webp", "/vaccine2.webp", "/vaccine3.webp"]; // Add your image URLs here
+  // const initialTypingDelay: number = 10;
+  // const typingSpeed: number = 60;
+  // const [typedText, setTypedText] = useState<string>("");
 
-export default function Card() {
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  // const [currentIndex, setCurrentIndex] = useState<number>(0);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
-    }, 5000); // Change image every 5 seconds
+  const [brightness, setBrightness] = useState<number>(100);
+  const [showDes, setShowDes] = useState<boolean>(false);
 
-    return () => {
-      clearInterval(interval);
-    };
-  }, []);
+  // useEffect(() => {
+  //   let timeout: NodeJS.Timeout;
+
+  //   // const startTyping = () => {
+  //   //   if (currentIndex <= originalText.length) {
+  //   //     setTypedText(originalText.slice(0, currentIndex));
+  //   //     setCurrentIndex((prevIndex) => prevIndex + 1);
+  //   //     timeout = setTimeout(startTyping, typingSpeed + Math.random() * 20);
+  //   //   }
+  //   // };
+
+  //   timeout = setTimeout(startTyping, initialTypingDelay);
+
+  //   return () => {
+  //     clearTimeout(timeout);
+  //   };
+  // }, [currentIndex, initialTypingDelay, typingSpeed]);
 
   return (
     <>
-      {images.map((image, index) => (
+      <div className='relative border-gray-400 transition-all duration-300 flex items-center flex-col justify-start rounded-t-[3rem] overflow-hidden h-[35vh] border-2'>
         <div
-          key={index}
+          className='absolute top-0 left-0 w-full h-full'
           style={{
-            backgroundImage: `url(${image})`,
+            backgroundImage: `url(${hospitalPicUrl})`,
             backgroundSize: "cover",
             backgroundRepeat: "no-repeat",
-            top: 0,
-            zIndex: currentImageIndex === index ? -1 : -10,
-            position: "absolute",
-            filter: "brightness(53%)",
-
-            opacity: currentImageIndex === index ? 1 : 0, // Fade in/out effect
-            transition: "opacity 1s ease-in-out",
+            filter: `brightness(${brightness}%)`,
+            zIndex: -10,
+            transition: "filter 0.3s ease-in-out",
           }}
-          className='image'
         />
-      ))}
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          fontSize: "50px",
-          alignItems: "center",
-          height: "50vh",
-        }}
-      >
-        <h2 style={{ fontSize: "50px", fontWeight: "300" }}>
-          ประชาสัมพันธ์การให้บริการวัคซีน{" "}
-        </h2>
-        <button className={styles.button}>
-          ต้องการความช่วยเหลืออยู่หรือเปล่า -&gt;
-        </button>
+        <div
+          className={`transition-opacity duration-500 pt-8 px-3 ${
+            showDes ? "opacity-100" : "opacity-0 "
+          }`}
+        >
+          {hospitalDescription}
+        </div>
+        <div
+          onMouseEnter={() => {
+            setBrightness(40);
+            setShowDes(true);
+          }}
+          onMouseLeave={() => {
+            setBrightness(100);
+            setShowDes(false);
+          }}
+          className='text-center px-4 py-2 hover:scale-[102%] bg-blue-700 rounded-md hover:bg-blue-600 hover:text-white transition-all duration-300 absolute bottom-4'
+        >
+          <span>{hospitalName} -&gt;</span>
+        </div>
       </div>
     </>
   );

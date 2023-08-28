@@ -1,52 +1,58 @@
 "use client";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
+import styles from "../style/card.module.css";
+
+const images = ["/vaccine1.webp", "/vaccine2.webp", "/vaccine3.webp"]; // Add your image URLs here
+
 export default function Banner() {
-  const originalText: string =
-    "Vaccines are instrumental in global health, offering immunity against infectious diseases. They stimulate the immune system to recognize and fight pathogens, curbing severe illnesses. Over time, vaccines have eradicated diseases like smallpox and curtailed polio and measles. Despite skepticism, rigorous research and trials ensure vaccine safety. Beyond individual well-being, vaccines establish herd immunity, safeguarding vulnerable groups. Advancements like mRNA technology drive vaccine innovation, fortifying our defenses against emerging diseases. As a symbol of medical progress, vaccines stand as a testament to humanity's commitment to health, embodying our potential to conquer present and future health challenges.";
-
-  const initialTypingDelay: number = 10;
-  const typingSpeed: number = 60;
-
-  const [typedText, setTypedText] = useState<string>("");
-  const [currentIndex, setCurrentIndex] = useState<number>(0);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   useEffect(() => {
-    let timeout: NodeJS.Timeout;
-
-    const startTyping = () => {
-      if (currentIndex <= originalText.length) {
-        setTypedText(originalText.slice(0, currentIndex));
-        setCurrentIndex((prevIndex) => prevIndex + 1);
-        timeout = setTimeout(startTyping, typingSpeed + Math.random() * 20);
-      }
-    };
-
-    timeout = setTimeout(startTyping, initialTypingDelay);
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
+    }, 5000); // Change image every 5 seconds
 
     return () => {
-      clearTimeout(timeout);
+      clearInterval(interval);
     };
-  }, [currentIndex, initialTypingDelay, typingSpeed]);
+  }, []);
 
   return (
     <>
+      {images.map((image, index) => (
+        <div
+          key={index}
+          style={{
+            backgroundImage: `url(${image})`,
+            backgroundSize: "cover",
+            backgroundRepeat: "no-repeat",
+            top: 0,
+            zIndex: currentImageIndex === index ? -1 : -10,
+            position: "absolute",
+            filter: "brightness(53%)",
+
+            opacity: currentImageIndex === index ? 1 : 0, // Fade in/out effect
+            transition: "opacity 1s ease-in-out",
+          }}
+          className='image'
+        />
+      ))}
       <div
         style={{
-          border: "2px solid yellow",
-          marginTop: "10px",
-          borderRadius: "20px",
-          padding: "20px",
-          backgroundColor: "rgba(255, 255, 255, 0.4)",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          fontSize: "50px",
+          alignItems: "center",
+          height: "50vh",
         }}
       >
-        {typedText}
-        <span
-          style={{
-            opacity: typedText.length % 2 === 0 ? 0 : 1,
-          }}
-        >
-          |
-        </span>
+        <h2 style={{ fontSize: "50px", fontWeight: "300" }}>
+          ประชาสัมพันธ์การให้บริการวัคซีน{" "}
+        </h2>
+        <button className={styles.button}>
+          ต้องการความช่วยเหลืออยู่หรือเปล่า -&gt;
+        </button>
       </div>
     </>
   );
