@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 export default function Navbar() {
   return (
-    <div className='bg-white bg-opacity-[30%] border-b-1 border-black w-100% h-[9vh] rounded-b-xl flex items-center justify-between'>
+    <div className='bg-white bg-opacity-[30%] border-b-1 border-black w-100% h-[9vh] flex items-center justify-between'>
       <div className='text-white text-xl hover:scale-[102%] font-medium px-4 py-2 rounded-md ml-4'>
         <Link href='/'>My-Vaccine-App</Link>
       </div>

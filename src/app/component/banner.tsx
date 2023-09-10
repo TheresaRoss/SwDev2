@@ -2,23 +2,23 @@
 import React, { useState, useEffect } from "react";
 import styles from "../style/card.module.css";
 
-const images = ["/vaccine1.webp", "/vaccine2.webp", "/vaccine3.webp"]; // Add your image URLs here
+const images = [
+  "/vaccine1.webp",
+  "/vaccine2.webp",
+  "/vaccine3.webp",
+  "/vaccine4.jpeg",
+]; // Add your image URLs here
 
 export default function Banner() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
-    }, 5000); // Change image every 5 seconds
-
-    return () => {
-      clearInterval(interval);
-    };
-  }, []);
-
   return (
-    <>
+    <div
+      onClick={() => {
+        console.log("Hi");
+        setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
+      }}
+    >
       {images.map((image, index) => (
         <div
           key={index}
@@ -54,6 +54,6 @@ export default function Banner() {
           ต้องการความช่วยเหลืออยู่หรือเปล่า -&gt;
         </button>
       </div>
-    </>
+    </div>
   );
 }

@@ -1,40 +1,18 @@
 "use client";
+import { Rating } from "@mui/material";
 import { useState, useEffect } from "react";
-import CardProps from "../interface";
+import { CardProps } from "../interface";
 import Image from "next/image";
 export default function Card({
   hospitalName,
   hospitalPicUrl,
   hospitalDescription,
+  state,
 }: CardProps) {
-  // const originalText: String = hospitalName;
-
-  // const initialTypingDelay: number = 10;
-  // const typingSpeed: number = 60;
-  // const [typedText, setTypedText] = useState<string>("");
-
-  // const [currentIndex, setCurrentIndex] = useState<number>(0);
+  const rating = state.hospitalRatings.get(hospitalName) || 0;
 
   const [brightness, setBrightness] = useState<number>(100);
   const [showDes, setShowDes] = useState<boolean>(false);
-
-  // useEffect(() => {
-  //   let timeout: NodeJS.Timeout;
-
-  //   // const startTyping = () => {
-  //   //   if (currentIndex <= originalText.length) {
-  //   //     setTypedText(originalText.slice(0, currentIndex));
-  //   //     setCurrentIndex((prevIndex) => prevIndex + 1);
-  //   //     timeout = setTimeout(startTyping, typingSpeed + Math.random() * 20);
-  //   //   }
-  //   // };
-
-  //   timeout = setTimeout(startTyping, initialTypingDelay);
-
-  //   return () => {
-  //     clearTimeout(timeout);
-  //   };
-  // }, [currentIndex, initialTypingDelay, typingSpeed]);
 
   return (
     <>
@@ -66,9 +44,21 @@ export default function Card({
             setBrightness(100);
             setShowDes(false);
           }}
-          className='text-center px-4 py-2 hover:scale-[102%] bg-blue-700 rounded-md hover:bg-blue-600 hover:text-white transition-all duration-300 absolute bottom-4'
+          className='text-center flex justify-center items-center px-4 py-2 hover:scale-[102%] bg-blue-700 rounded-md hover:bg-blue-600 hover:text-white transition-all duration-300 absolute bottom-4'
         >
-          <span>{hospitalName} -&gt;</span>
+          <Rating
+            className='mr-3 bg-white bg-opacity-20 rounded-full'
+            name='simple-controlled'
+            value={rating}
+            precision={0.5}
+          />
+          <span
+            onClick={() => {
+              alert("You clicked " + hospitalName + " !");
+            }}
+          >
+            {hospitalName} -&gt;
+          </span>
         </div>
       </div>
     </>
