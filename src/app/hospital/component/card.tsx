@@ -1,16 +1,22 @@
 "use client";
+
 import { Rating } from "@mui/material";
 import { useState, useEffect } from "react";
-import { CardProps } from "../interface";
+import { CardProps } from "../../interface";
+import Link from "next/link";
 import Image from "next/image";
 export default function Card({
   hospitalName,
   hospitalPicUrl,
   hospitalDescription,
+  id,
   state,
 }: CardProps) {
+  const navLink = {
+    pathname: `/hospital/${id}`,
+    query: { id: id, hospitalPic: hospitalPicUrl, name: hospitalName },
+  };
   const rating = state.hospitalRatings.get(hospitalName) || 0;
-
   const [brightness, setBrightness] = useState<number>(100);
   const [showDes, setShowDes] = useState<boolean>(false);
 
@@ -31,8 +37,7 @@ export default function Card({
         <div
           className={`transition-opacity duration-500 pt-8 px-3 ${
             showDes ? "opacity-100" : "opacity-0 "
-          }`}
-        >
+          }`}>
           {hospitalDescription}
         </div>
         <div
@@ -44,21 +49,14 @@ export default function Card({
             setBrightness(100);
             setShowDes(false);
           }}
-          className='text-center flex justify-center items-center px-4 py-2 hover:scale-[102%] bg-blue-700 rounded-md hover:bg-blue-600 hover:text-white transition-all duration-300 absolute bottom-4'
-        >
+          className='text-center flex justify-center items-center px-4 py-2 hover:scale-[102%] bg-blue-700 rounded-md hover:bg-blue-600 hover:text-white transition-all duration-300 absolute bottom-4'>
           <Rating
             className='mr-3 bg-white bg-opacity-20 rounded-full'
             name='simple-controlled'
             value={rating}
             precision={0.5}
           />
-          <span
-            onClick={() => {
-              alert("You clicked " + hospitalName + " !");
-            }}
-          >
-            {hospitalName} -&gt;
-          </span>
+          <Link href={navLink}>{hospitalName} -&gt;</Link>
         </div>
       </div>
     </>

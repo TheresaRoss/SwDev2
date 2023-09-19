@@ -4,6 +4,7 @@ export interface CardProps {
   hospitalPicUrl: string;
   hospitalDescription: string;
   state: State;
+  id: number;
 }
 export interface CardPanelProps {
   hospitalName: string[];

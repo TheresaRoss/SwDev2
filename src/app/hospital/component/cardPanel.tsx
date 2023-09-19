@@ -1,5 +1,5 @@
 "use client";
-import { CardPanelProps } from "../interface";
+import { CardPanelProps } from "../../interface";
 export default function CardPanel({
   hospitalName,
 
@@ -17,20 +17,17 @@ export default function CardPanel({
               <div className='mt-2'>
                 <button
                   className='bg-orange-400 hover:bg-orange-500 text-white px-3 py-1 rounded-lg mr-2'
-                  onClick={() => handleRemoveHospital(element)}
-                >
+                  onClick={() => handleRemoveHospital(element)}>
                   Remove
                 </button>
                 <button
                   className='bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded-lg mr-2'
-                  onClick={() => handleIncreaseRating(element)}
-                >
+                  onClick={() => handleIncreaseRating(element)}>
                   Increase Rating
                 </button>
                 <button
                   className='bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-lg'
-                  onClick={() => handleDecreaseRating(element)}
-                >
+                  onClick={() => handleDecreaseRating(element)}>
                   Decrease Rating
                 </button>
               </div>

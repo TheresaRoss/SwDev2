@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import styles from "../style/card.module.css";
+import { useRouter } from "next/navigation";
 
 const images = [
   "/vaccine1.webp",
@@ -10,6 +11,8 @@ const images = [
 ]; // Add your image URLs here
 
 export default function Banner() {
+  const router = useRouter();
+
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   return (
@@ -17,8 +20,7 @@ export default function Banner() {
       onClick={() => {
         console.log("Hi");
         setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
-      }}
-    >
+      }}>
       {images.map((image, index) => (
         <div
           key={index}
@@ -44,13 +46,16 @@ export default function Banner() {
           justifyContent: "center",
           fontSize: "50px",
           alignItems: "center",
-          height: "50vh",
-        }}
-      >
+          height: "90vh",
+        }}>
         <h2 style={{ fontSize: "50px", fontWeight: "300" }}>
           ประชาสัมพันธ์การให้บริการวัคซีน{" "}
         </h2>
-        <button className={styles.button}>
+        <button
+          onClick={() => {
+            router.push("/hospital");
+          }}
+          className={styles.button}>
           ต้องการความช่วยเหลืออยู่หรือเปล่า -&gt;
         </button>
       </div>
