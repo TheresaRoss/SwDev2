@@ -36,7 +36,7 @@ export default function Banner() {
             opacity: currentImageIndex === index ? 1 : 0, // Fade in/out effect
             transition: "opacity 1s ease-in-out",
           }}
-          className='image'
+          className="image"
         />
       ))}
       <div
@@ -46,7 +46,7 @@ export default function Banner() {
           justifyContent: "center",
           fontSize: "50px",
           alignItems: "center",
-          height: "90vh",
+          height: "50vh",
         }}>
         <h2 style={{ fontSize: "50px", fontWeight: "300" }}>
           ประชาสัมพันธ์การให้บริการวัคซีน{" "}

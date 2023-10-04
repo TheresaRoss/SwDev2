@@ -22,9 +22,9 @@ export default function Card({
 
   return (
     <>
-      <div className='relative shadow-md hover:shadow-2xl hover:border-2 hover:border-neutral-200  transition-all duration-300 flex items-center flex-col justify-start rounded-t-[3rem] overflow-hidden h-[35vh] border-2'>
+      <div className="relative shadow-md hover:shadow-2xl hover:border-2 hover:border-neutral-200  transition-all duration-300 flex items-center flex-col justify-start rounded-t-[3rem] overflow-hidden h-[35vh] border-2">
         <div
-          className='absolute top-0 left-0 w-full h-full'
+          className="absolute top-0 left-0 w-full h-full"
           style={{
             backgroundImage: `url(${hospitalPicUrl})`,
             backgroundSize: "cover",
@@ -49,10 +49,10 @@ export default function Card({
             setBrightness(100);
             setShowDes(false);
           }}
-          className='text-center flex justify-center items-center px-4 py-2 hover:scale-[102%] bg-blue-700 rounded-md hover:bg-blue-600 hover:text-white transition-all duration-300 absolute bottom-4'>
+          className="text-center flex justify-center items-center px-4 py-2 hover:scale-[102%] bg-blue-700 rounded-md hover:bg-blue-600 hover:text-white transition-all duration-300 absolute bottom-4">
           <Rating
-            className='mr-3 bg-white bg-opacity-20 rounded-full'
-            name='simple-controlled'
+            className="mr-3 bg-white bg-opacity-20 rounded-full"
+            name="simple-controlled"
             value={rating}
             precision={0.5}
           />
