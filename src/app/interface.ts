@@ -3,7 +3,7 @@ export interface CardProps {
   hospitalName: string;
   hospitalPicUrl: string;
   hospitalDescription: string;
-  state: State;
+
   id: number;
 }
 export interface CardPanelProps {

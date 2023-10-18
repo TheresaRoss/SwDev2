@@ -10,13 +10,12 @@ export default function Card({
   hospitalPicUrl,
   hospitalDescription,
   id,
-  state,
 }: CardProps) {
   const navLink = {
     pathname: `/hospital/${id}`,
     query: { id: id, hospitalPic: hospitalPicUrl, name: hospitalName },
   };
-  const rating = state.hospitalRatings.get(hospitalName) || 0;
+  const rating = 0;
   const [brightness, setBrightness] = useState<number>(100);
   const [showDes, setShowDes] = useState<boolean>(false);
 

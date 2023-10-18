@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import styles from "../style/card.module.css";
+import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
 const images = [
@@ -12,6 +13,7 @@ const images = [
 
 export default function Banner() {
   const router = useRouter();
+  const { data: session } = useSession();
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
@@ -48,9 +50,15 @@ export default function Banner() {
           alignItems: "center",
           height: "50vh",
         }}>
-        <h2 style={{ fontSize: "50px", fontWeight: "300" }}>
-          ประชาสัมพันธ์การให้บริการวัคซีน{" "}
-        </h2>
+        {session ? (
+          <h2 style={{ fontSize: "50px", fontWeight: "300" }}>
+            Hello, {session.user?.name}
+          </h2>
+        ) : (
+          <h2 style={{ fontSize: "50px", fontWeight: "300" }}>
+            ประชาสัมพันธ์การให้บริการวัคซีน{" "}
+          </h2>
+        )}
         <button
           onClick={() => {
             router.push("/hospital");
