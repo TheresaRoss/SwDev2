@@ -19,3 +19,11 @@ export type State = {
 export type Action =
   | { type: "ADD_RATING"; payload: { name: string; rating: number } }
   | { type: "REMOVE_HOSPITAL"; payload: { name: string } };
+
+export interface BookingItem {
+  name: string;
+  lastname: string;
+  nationalID: string;
+  hospital: string;
+  date: string;
+}

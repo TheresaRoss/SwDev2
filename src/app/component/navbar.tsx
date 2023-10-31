@@ -8,8 +8,14 @@ export default async function Navbar() {
   const session = await getServerSession(authOptions);
   return (
     <div className="bg-white bg-opacity-[30%] border-b-1 border-black w-100% h-[9vh] flex items-center justify-between">
-      <div className="text-white text-xl hover:scale-[102%] font-medium px-4 py-2 rounded-md ml-4">
-        <Link href="/">My-Vaccine-App</Link>
+      <div className="text-white text-xl  font-medium px-4 py-2 rounded-md ml-4">
+        <Link href="/" className="hover:scale-[102%]">
+          My-Vaccine-App
+        </Link>
+
+        <Link className="ml-5 texl-lg hover:scale-[102%]" href="/mybooking">
+          My Booking
+        </Link>
       </div>
       <div className="flex items-center">
         {session ? (
