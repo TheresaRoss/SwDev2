@@ -3,6 +3,7 @@ import Link from "next/link";
 
 export default async function HospitalCatalog(data: any) {
   const datacome = await data.data;
+  //console.log(datacome);
   return (
     <div className="grid grid-cols-3 gap-6 px-10">
       {datacome.data.map((element: any) => {
