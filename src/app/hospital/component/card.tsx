@@ -23,6 +23,7 @@ export default function Card({
     <>
       <div className="relative shadow-md hover:shadow-2xl hover:border-2 hover:border-neutral-200  transition-all duration-300 flex items-center flex-col justify-start rounded-t-[3rem] overflow-hidden h-[35vh] border-2">
         <div
+          data-testid="testdata"
           className="absolute top-0 left-0 w-full h-full"
           style={{
             backgroundImage: `url(${hospitalPicUrl})`,
