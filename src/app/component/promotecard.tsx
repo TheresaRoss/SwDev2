@@ -28,6 +28,7 @@ export default function PromoteCard() {
         <h1 className="text-2xl font-semibold">Get Your Vaccine Today</h1>
         <div>
           <button
+            id="clicktopause"
             onClick={() => {
               setPlaying(!playing);
             }}

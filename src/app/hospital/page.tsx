@@ -11,10 +11,6 @@ import getUserData from "@/lib/getUserData";
 export default async function Hospital() {
   const data = getAllHospital();
 
-  const session = await getServerSession(authOptions);
-  if (!session || !session.user.token) return null;
-  const profile = await getUserData(session.user.token);
-
   return (
     <div className="mt-10">
       <Suspense
@@ -25,7 +21,7 @@ export default async function Hospital() {
           </p>
         }>
         <HospitalCatalog data={data} />
-        {profile.data.role == "admin" ? <AddHospitalForm /> : null}
+        {false ? <AddHospitalForm /> : null}
       </Suspense>
     </div>
   );
